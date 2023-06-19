@@ -1,6 +1,7 @@
 import { useState, Suspense } from "react";
 import { api } from "~/utils/api";
 import PostList from "./PostList";
+import PostDetail from "./PostDetail";
 
 const BASE_USER_ID = 1;
 
@@ -11,16 +12,17 @@ export default function FullPage() {
 
   return (
     <div className="App">
-      <div className="Header">{user.data && user.data.name}</div>
+      <h2 className="Header">{user.data && user.data.name}</h2>
+      <div />
       <PostList
         userId={BASE_USER_ID}
         selectedPostId={selectedPostId}
         setSelectedPostId={setSelectedPostId}
       />
-      {/* <Suspense fallback={<div>Loading... </div>}>
+      <Suspense fallback={<div>Loading... </div>}>
         {(selectedPostId && <PostDetail postId={selectedPostId} />) ||
           "No post selected"}
-      </Suspense> */}
+      </Suspense>
     </div>
   );
 }

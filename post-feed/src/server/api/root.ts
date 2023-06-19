@@ -32,6 +32,14 @@ export const appRouter = createTRPCRouter({
         where: { id: input.postId },
       });
     }),
+  starPost: publicProcedure
+    .input(z.object({ postId: z.number(), starred: z.boolean() }))
+    .mutation(({ ctx, input }) => {
+      return ctx.prisma.post.update({
+        where: { id: input.postId },
+        data: { starred: input.starred },
+      });
+    }),
 });
 
 // export type definition of API

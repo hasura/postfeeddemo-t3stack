@@ -1,0 +1,57 @@
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+    monospace;
+}
+
+.App {
+  display: grid;
+  grid-template: auto 1fr / 1fr 2fr;
+  position: fixed; top: 0; left: 0; right: 0; bottom: 0;
+}
+
+.PostList {
+  border-right: 5px solid black;
+  overflow-y: scroll;
+}
+
+.PostItem {
+  border-bottom: 1px solid black;
+  padding: 10px 10px;
+  cursor: pointer;
+}
+
+.PostItem:hover {
+  background-color: #eee;
+}
+
+.PostItem.selected {
+  background-color: #ccc;
+}
+
+.PostItem h4 {
+  margin: 4px 0;
+}
+
+.PostDetail {
+  padding: 0px 20px;
+}
+
+.Star {
+  display: inline-block;
+  padding: 4px 6px;
+}
+
+.Star:hover {
+  background-color: rgb(250, 229, 3);
+  color: white;
+  cursor: pointer;
+}
