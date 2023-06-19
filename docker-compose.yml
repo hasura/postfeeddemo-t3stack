@@ -1,0 +1,33 @@
+version: '3.8'
+services:
+  server:
+    build: .
+    command: sleep infinity
+    environment:
+      - DATABASE_URL=postgres://dbuser:dbpwd@database:5432/appdb
+    volumes:
+      - ./post-feed:/post-feed
+  # app:
+  #   build: ./app
+  #   command: sleep infinity
+  #   volumes:
+  #     - ./app:/app
+  #   environment:
+  #     HASURA_GRAPHQL_ADMIN_SECRET: aFyrZOSGqAj2Eob5lNWz
+  #     HASURA_GRAPHQL_GRAPHQL_URL: http://hasura:8080/v1/graphql
+  #   ports:
+  #   - "3000:3000"
+  #   - "9695:9695"
+  database:
+    image: postgres:15
+    ports:
+    - "5432:5432"
+    volumes:
+      - database-data:/var/lib/postgresql/data
+    environment:
+      POSTGRES_USER: dbuser
+      POSTGRES_PASSWORD: dbpwd
+      POSTGRES_DB: appdb
+
+volumes:
+  database-data:
