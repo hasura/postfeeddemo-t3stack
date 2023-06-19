@@ -5,6 +5,8 @@ services:
     command: sleep infinity
     environment:
       - DATABASE_URL=postgres://dbuser:dbpwd@database:5432/appdb
+    ports:
+      - "3000:3000"
     volumes:
       - ./post-feed:/post-feed
   # app:

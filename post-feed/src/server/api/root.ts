@@ -11,32 +11,26 @@ export const appRouter = createTRPCRouter({
   userDetails: publicProcedure
     .input(z.object({ userId: z.number() }))
     .query(({ ctx, input }) => {
-      return {
-        user: ctx.prisma.user.findUnique({
-          where: { id: input.userId },
-        }),
-      };
+      return ctx.prisma.user.findUnique({
+        where: { id: input.userId },
+      });
     }),
   postsForUser: publicProcedure
     .input(z.object({ userId: z.number() }))
     .query(({ ctx, input }) => {
-      return {
-        posts: ctx.prisma.post.findMany({
-          where: { userId: input.userId },
-          select: { id: true, title: true, starred: true },
-          orderBy: { createdAt: "desc" },
-          take: 30,
-        }),
-      };
+      return ctx.prisma.post.findMany({
+        where: { userId: input.userId },
+        select: { id: true, title: true, starred: true },
+        orderBy: { createdAt: "desc" },
+        take: 30,
+      });
     }),
   postDetails: publicProcedure
     .input(z.object({ postId: z.number() }))
     .query(({ ctx, input }) => {
-      return {
-        posts: ctx.prisma.post.findUnique({
-          where: { id: input.postId },
-        }),
-      };
+      return ctx.prisma.post.findUnique({
+        where: { id: input.postId },
+      });
     }),
 });
 
