@@ -1,4 +1,6 @@
 import Star from "./Star";
+import Likes from "./Likes";
+import Comments from "./Comments";
 import { api } from "~/utils/api";
 
 export default function PostDetail({ postId }) {
@@ -12,7 +14,9 @@ export default function PostDetail({ postId }) {
         <Star post={p} />
         <p>{p.body}</p>
         <p>{p.createdAt.toString()}</p>
-        <p>{p.id}</p>
+        {/* <p>{p.id}</p> */}
+        <Likes postId={p.id} />
+        <Comments postId={p.id} />
       </div>
     )
   );

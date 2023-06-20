@@ -21,8 +21,8 @@ export const appRouter = createTRPCRouter({
       return ctx.prisma.post.findMany({
         where: { userId: input.userId },
         select: { id: true, title: true, starred: true },
-        orderBy: { createdAt: "desc" },
-        take: 30,
+        orderBy: { id: "asc" },
+        take: 100,
       });
     }),
   postDetails: publicProcedure
@@ -30,6 +30,35 @@ export const appRouter = createTRPCRouter({
     .query(({ ctx, input }) => {
       return ctx.prisma.post.findUnique({
         where: { id: input.postId },
+      });
+    }),
+  postComments: publicProcedure
+    .input(z.object({ postId: z.number() }))
+    .query(({ ctx, input }) => {
+      return ctx.prisma.comment.findMany({
+        where: { postId: input.postId },
+        orderBy: { createdAt: "desc" },
+        take: 100,
+      });
+    }),
+  postLikes: publicProcedure
+    .input(z.object({ postId: z.number() }))
+    .query(({ ctx, input }) => {
+      return ctx.prisma.like.findMany({
+        where: { postId: input.postId },
+        include: { user: true },
+        orderBy: [{ createdAt: "desc" }, { id: "asc" }],
+        take: 4,
+      });
+    }),
+  commentLikes: publicProcedure
+    .input(z.object({ commentId: z.number() }))
+    .query(({ ctx, input }) => {
+      return ctx.prisma.commentLike.findMany({
+        where: { commentId: input.commentId },
+        include: { user: true },
+        orderBy: [{ createdAt: "desc" }, { id: "asc" }],
+        take: 4,
       });
     }),
   starPost: publicProcedure

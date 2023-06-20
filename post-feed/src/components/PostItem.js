@@ -1,4 +1,5 @@
 import Star from "./Star";
+import Likes from "./Likes";
 
 export default function PostItem({ post, setSelectedPostId, isSelected }) {
   return (
@@ -8,6 +9,7 @@ export default function PostItem({ post, setSelectedPostId, isSelected }) {
     >
       <h4>{post.title}</h4>
       <Star post={post} />
+      <Likes postId={post.id} />
     </div>
   );
 }
