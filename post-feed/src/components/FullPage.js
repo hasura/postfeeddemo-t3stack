@@ -12,7 +12,10 @@ export default function FullPage() {
 
   return (
     <div className="App">
-      <h2 className="Header">{user.data && user.data.name}</h2>
+      <h2 className="Header">
+        {user.data && user.data.name}
+        <span className="AppType">&nbsp;&nbsp;T3STACK</span>
+      </h2>
       <div />
       <PostList
         userId={BASE_USER_ID}
